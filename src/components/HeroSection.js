@@ -1,5 +1,5 @@
 // components/HeroSection.js
-import React from "react";
+import React, { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { IoChevronForwardCircle, IoStar } from "react-icons/io5";
 import { IconContext } from "react-icons";
@@ -43,12 +43,13 @@ const star = {
   },
 };
 
-const HeroSection = () => (
+const HeroSection = forwardRef((props, ref) => (
   <motion.div
     className="content_wrapper"
     initial={{ opacity: 0, scale: 0 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.3, ease: [0.6, -0.05, 0.01, 0.99] }}
+    ref={ref}
   >
     <div className="left_content_wrapper">
       <motion.h2>
@@ -75,7 +76,7 @@ const HeroSection = () => (
           whileTap={{ scale: 0.95 }}
         >
           Hire Me
-          <IconContext.Provider value={{ color: "#14da8f", size: "25px" }}>
+          <IconContext.Provider value={{ color: "#14da8f", size: "1.5625rem" }}> 
             <IoChevronForwardCircle />
           </IconContext.Provider>
         </motion.div>
@@ -91,7 +92,7 @@ const HeroSection = () => (
         <motion.p className="total_review" variants={star}>
           64+ Reviews
         </motion.p>
-        <IconContext.Provider value={{ color: "#fff", size: "18px" }}>
+        <IconContext.Provider value={{ color: "#fff", size: "1.125rem" }}>
           {[...Array(5)].map((_, i) => (
             <motion.span
               key={i}
@@ -122,6 +123,6 @@ const HeroSection = () => (
       />
     </motion.div>
   </motion.div>
-);
+));
 
 export default HeroSection;
