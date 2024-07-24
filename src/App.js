@@ -1,10 +1,11 @@
 // App.js
 import React, { useRef } from 'react';
 import './App.scss';
-import Header from './components/Header';
+import Card from './components/card/Card';
+import ScrollToTopButton from './components/ui/ScrollToTopButton';
+import Footer from './components/footer/Footer';
 import HeroSection from './components/HeroSection';
-import Card from './components/Card';
-import ScrollToTopButton from './components/ui/ScrollToTopButton'; 
+import Header from './components/header/Header';
 
 const App = () => {
   const aboutRef = useRef(null);
@@ -25,6 +26,7 @@ const App = () => {
       <HeroSection ref={aboutRef} />
       <Card ref={servicesRef} />
       <ScrollToTopButton /> 
+      <Footer />
     </>
   );
 };

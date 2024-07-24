@@ -19,6 +19,7 @@ const ScrollButton = styled(Button)(({ theme }) => ({
   "&:hover": {
     backgroundColor: "#12c89c",
   },
+  zIndex: 1000, // Ensure button appears above other content
 }));
 
 const ScrollToTopButton = () => {
@@ -26,7 +27,7 @@ const ScrollToTopButton = () => {
 
   // Toggle button visibility based on scroll position
   const handleScroll = () => {
-    if (window.scrollY > 300) {
+    if (window.scrollY > 1200) {
       setShowButton(true);
     } else {
       setShowButton(false);

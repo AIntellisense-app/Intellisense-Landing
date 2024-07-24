@@ -25,8 +25,8 @@ const iconVariants = {
 const StyledButton = styled(Button)(({ theme }) => ({
   color: theme.palette.text.primary,
   backgroundColor: theme.palette.background.default,
-  padding: "0.4rem",  // Equivalent to 10px 20px
-  borderRadius: "0.5rem",       // Equivalent to 8px
+  padding: "0.4rem", // Equivalent to 10px 20px
+  borderRadius: "0.5rem", // Equivalent to 8px
   "&.active": {
     backgroundColor: "#14da8f",
     color: "#fff",
@@ -42,8 +42,14 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
+const LogoImage = styled("img")({
+  maxWidth: "140px",
+  height: "100%", // 25% of the viewport height
+  objectFit: "contain", // Maintain aspect ratio and fit within the container
+});
+
 const Header = ({ refs }) => {
-  const [active, setActive] = useState('home');
+  const [active, setActive] = useState("home");
 
   const handleClick = (section) => {
     setActive(section);
@@ -53,7 +59,7 @@ const Header = ({ refs }) => {
   return (
     <motion.header variants={headerVariants}>
       <motion.div className="logo_wrapper" variants={iconVariants}>
-        dev<span>amit</span>
+        <LogoImage src="/images/logo-no-background.png" alt="Logo" />
       </motion.div>
       <motion.div className="menu_container" variants={headerVariants}>
         <StyledButton

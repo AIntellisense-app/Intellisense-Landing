@@ -1,3 +1,12 @@
+:root {
+  --background-color: #f0f0f0; /* Light gray background */
+  --text-color: #333; /* Dark gray text color */
+  --code-text-color: #d63384; /* Pink color for code text */
+  --code-background-color: #f8f9fa; /* Light background for code blocks */
+  --code-padding: 2px 4px; /* Padding around code text */
+  --code-border-radius: 4px; /* Rounded corners for code blocks */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +14,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  color: var(--code-text-color);
+  background-color: var(--code-background-color);
+  padding: var(--code-padding);
+  border-radius: var(--code-border-radius);
 }
