@@ -1,8 +1,7 @@
-import React from "react";
-import { FaBehance, FaDribbble } from "react-icons/fa";
-import { IoMailOutline } from "react-icons/io5";
-import { IconContext } from "react-icons";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Button } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const headerVariants = {
   animate: {
@@ -23,39 +22,73 @@ const iconVariants = {
   },
 };
 
-const Header = () => (
-  <motion.header variants={headerVariants}>
-    <motion.div className="logo_wrapper" variants={iconVariants}>
-      dev<span>amit</span>
-    </motion.div>
-    <motion.div className="menu_container" variants={headerVariants}>
-      <motion.span variants={iconVariants}>
-        <IconContext.Provider
-          value={{ color: "#000", size: "18px", className: "icons_container" }}
+const StyledButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.text.primary,
+  backgroundColor: theme.palette.background.default,
+  padding: "0.4rem",  // Equivalent to 10px 20px
+  borderRadius: "0.5rem",       // Equivalent to 8px
+  "&.active": {
+    backgroundColor: "#14da8f",
+    color: "#fff",
+    transform: "scale(1.1)",
+  },
+  "&.inactive": {
+    color: "#000",
+    "&:hover": {
+      backgroundColor: "#14da8f",
+      color: "#fff",
+      transform: "scale(1.05)",
+    },
+  },
+}));
+
+const Header = ({ refs }) => {
+  const [active, setActive] = useState('home');
+
+  const handleClick = (section) => {
+    setActive(section);
+    refs[section].current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <motion.header variants={headerVariants}>
+      <motion.div className="logo_wrapper" variants={iconVariants}>
+        dev<span>amit</span>
+      </motion.div>
+      <motion.div className="menu_container" variants={headerVariants}>
+        <StyledButton
+          className={active === "home" ? "active" : "inactive"}
+          onClick={() => handleClick("home")}
         >
-          <div className="icon">
-            <FaBehance />
-          </div>
-          <div className="icon">
-            <FaDribbble />
-          </div>
-        </IconContext.Provider>
-      </motion.span>
-      <motion.span variants={iconVariants}>
-        <IconContext.Provider value={{ color: "#000", size: "18px" }}>
-          <div className="icon">
-            <IoMailOutline />
-          </div>
-          hello@example.co
-        </IconContext.Provider>
-      </motion.span>
-      <motion.span className="menu" variants={iconVariants}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </motion.span>
-    </motion.div>
-  </motion.header>
-);
+          Home
+        </StyledButton>
+        <StyledButton
+          className={active === "about" ? "active" : "inactive"}
+          onClick={() => handleClick("about")}
+        >
+          About
+        </StyledButton>
+        <StyledButton
+          className={active === "features" ? "active" : "inactive"}
+          onClick={() => handleClick("features")}
+        >
+          Features
+        </StyledButton>
+        <StyledButton
+          className={active === "services" ? "active" : "inactive"}
+          onClick={() => handleClick("services")}
+        >
+          Services
+        </StyledButton>
+        <StyledButton
+          className={active === "contact" ? "active" : "inactive"}
+          onClick={() => handleClick("contact")}
+        >
+          Contact
+        </StyledButton>
+      </motion.div>
+    </motion.header>
+  );
+};
 
 export default Header;
